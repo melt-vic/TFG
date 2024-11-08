@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="TFG" company="" webLink="http://" view-date="2024-11-11" view-index="0" gantt-divider-location="653" resource-divider-location="300" version="3.3.3312" locale="es_ES">
+    <description/>
+    <view zooming-state="default:7" id="gantt-chart">
+        <field id="tpd3" name="Nombre" width="421" order="0"/>
+        <field id="tpd4" name="Fecha de inicio" width="101" order="1"/>
+        <field id="tpd5" name="Fecha de fin" width="115" order="2"/>
+        <field id="tpd15" name="Notas" width="20" order="3"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="filter.dueTodayTasks" value="false"/>
+        <option id="filter.overdueTasks" value="false"/>
+        <option id="filter.inProgressTodayTasks" value="false"/>
+        <timeline><![CDATA[5,2,3,1,29]]></timeline>
+        <option id="color.recent"><![CDATA[#ff0000 #ff3333 #3333ff #9999ff #ccccff #6666ff #cccc00 #ffcc00 #999900 #ffff00]]></option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Nombre" width="210" order="0"/>
+        <field id="1" name="Función" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="1" uid="eda13014e72544fc9ed8b013f2cf5c1d" name="PEC 1" color="#0000cc" meeting="false" start="2024-09-25" duration="25" complete="0" expand="true">
+            <task id="8" uid="9ac67bb0ba0a41779a9dd248ccec1ac1" name="Lectura materiales" color="#0099cc" meeting="false" start="2024-09-25" duration="8" complete="0" expand="true"/>
+            <task id="24" uid="07bcced4e2c443ef96f5b5181f9f02ec" name="Informarse acerca de tecnologías requeridas" color="#0099ff" meeting="false" start="2024-09-25" duration="8" complete="0" expand="true"/>
+            <task id="7" uid="e4018296df974208a3ab5e54b4ac69e8" name="Elaboración propuesta inicial" color="#00cccc" meeting="false" start="2024-10-03" duration="17" complete="0" expand="true"/>
+            <task id="9" uid="45b158ec9a4a44e38c9575ad75cb1ac7" name="Entrega PEC 1" color="#0000cc" meeting="true" start="2024-10-20" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="2" uid="2c2b30d9e194462da202c91098212522" name="PEC 2" color="#006666" meeting="false" start="2024-10-21" duration="27" complete="0" expand="true">
+            <task id="13" uid="284298267b9741ec81965d218f3be6df" name="Análisis información acerca de monumentos en Wikidata y DBpedia" color="#99ff99" meeting="false" start="2024-10-21" duration="7" complete="0" expand="true"/>
+            <task id="12" uid="06365ab9b5024e05a4f31c7bad92f065" name="Análisis información acerca de monumentos disponible como open data" color="#009900" meeting="false" start="2024-10-21" duration="7" complete="0" expand="true"/>
+            <task id="10" uid="6e89648cafed4a26b6c1fa95ff4588c6" name="Elaboración estado del arte" color="#99cc00" meeting="false" start="2024-10-22" duration="26" complete="0" expand="true"/>
+            <task id="11" uid="f02b75f115a44806af2d3db0a911a791" name="Crear proyecto en Github" color="#00cc66" meeting="false" start="2024-11-15" duration="2" complete="0" expand="true"/>
+            <task id="23" uid="e42e0d97604f43178152a2c1eba70f90" name="Entrega PEC 2" color="#006633" meeting="true" start="2024-11-17" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="3" uid="4a4c513a97544b53a28d6c92dcaf97be" name="PEC 3" color="#ff6666" meeting="false" start="2024-11-18" duration="20" complete="0" expand="true">
+            <task id="14" uid="7622ce06fdf345c49ee860f1141f3f51" name="Diseño del modelo mediante UML" color="#ffcccc" meeting="false" start="2024-11-18" duration="13" complete="0" expand="true"/>
+            <task id="15" uid="1b768b97caad4d75a62e58bc8e7b0492" name="Implementación del diseño en Protégé" color="#ff9999" meeting="false" start="2024-11-29" duration="7" complete="0" expand="true"/>
+            <task id="16" uid="af6cb5a873f64d27a30dc2d25355502d" name="Script de importación de datos" color="#ff6666" meeting="false" start="2024-12-01" duration="6" complete="0" expand="true"/>
+            <task id="17" uid="b154119665814faf9a4cae502933a27a" name="Creación de consultas para demostrar potencial ontología" color="#cc0000" meeting="false" start="2024-12-05" duration="3" complete="0" expand="true"/>
+            <task id="25" uid="5d2f72c820444d8d9511f5d7bb22d417" name="Entrega PEC 3" color="#ff0000" meeting="true" start="2024-12-08" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="5" uid="a5dd999e3f304fc4992f8c77b9fdb12d" name="PEC 4" color="#6666ff" meeting="false" start="2024-12-09" duration="34" complete="0" expand="true">
+            <task id="21" uid="487c0882d99a4c9c8c20f0ba052e04f4" name="Versión definitiva de la ontología" color="#9999ff" meeting="false" start="2024-12-09" duration="22" complete="0" expand="true"/>
+            <task id="18" uid="1db3b8c92e5a40438f591498705fd5d6" name="Versión definitiva de la memoria" color="#ccccff" meeting="false" start="2024-12-09" duration="23" complete="0" expand="true"/>
+            <task id="22" uid="65978d307bb04871af1000ce48b60c64" name="Versión definitiva Github: fichero de la ontología y fichero README" color="#9999ff" meeting="false" start="2025-01-01" duration="2" complete="0" expand="true"/>
+            <task id="19" uid="67d52a129b0a4d22b38062da5d34f43c" name="Creación del vídeo de defensa del TFG" meeting="false" start="2025-01-02" duration="8" complete="0" expand="true"/>
+            <task id="20" uid="22a6e6db86064b2cb30f2171918c11af" name="Creación del vídeo tráiler del proyecto" color="#9999ff" meeting="false" start="2025-01-09" duration="3" complete="0" expand="true"/>
+            <task id="26" uid="ddc5c08f965f4fd788da0cad238e4cd8" name="Entrega PEC 4" color="#3333ff" meeting="true" start="2025-01-12" duration="0" complete="0" expand="true"/>
+        </task>
+        <task id="6" uid="02827cb564c845eca7167c067fbcb082" name="PEC 5" color="#ff0000" meeting="false" start="2025-01-13" duration="5" complete="0" expand="true">
+            <task id="27" uid="e79109059b104278ab506ef399483bfe" name="Preparación de la defensa síncrona del trabajo" color="#ff3333" meeting="false" start="2025-01-13" duration="3" complete="0" expand="true"/>
+            <task id="29" uid="737068c6c1494ff4be267b95ed75a9f9" name="Defensa del trabajo" color="#ff0000" meeting="true" start="2025-01-18" duration="0" complete="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources/>
+    <allocations/>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
