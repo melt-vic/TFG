@@ -1,0 +1,157 @@
+@prefix : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/> .
+
+<http://www.semanticweb.org/vic/ontologies/2024/10/monuments> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#belongsToCity
+:belongsToCity rdf:type owl:ObjectProperty ;
+               owl:inverseOf :districtIsInCity ;
+               rdfs:domain :City ;
+               rdfs:range :District ;
+               rdfs:label "cityHasDistrict" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#belongsToDistrict
+:belongsToDistrict rdf:type owl:ObjectProperty ;
+                   rdfs:domain :District ;
+                   rdfs:range :Neighborhood ;
+                   rdfs:label "districtHasNeighborhood" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#containsMonument
+:containsMonument rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf owl:topObjectProperty ;
+                  owl:inverseOf :monumentCity ;
+                  rdfs:domain :City ;
+                  rdfs:range :Monument ;
+                  rdfs:label "cityContainsMonument" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#districtContainsMonument
+:districtContainsMonument rdf:type owl:ObjectProperty ;
+                          rdfs:domain :District ;
+                          rdfs:range :Monument ;
+                          rdfs:label "districtContainsMonument" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#districtIsInCity
+:districtIsInCity rdf:type owl:ObjectProperty ;
+                  rdfs:domain :District ;
+                  rdfs:range :City ;
+                  rdfs:label "districtIsInCity" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isInCountry
+:isInCountry rdf:type owl:ObjectProperty ;
+             rdfs:domain :City ;
+             rdfs:range :Country ;
+             rdfs:label "isInCountry" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isLocated
+:isLocated rdf:type owl:ObjectProperty ;
+           rdfs:domain :Monument ;
+           rdfs:range :Coordinates ;
+           rdfs:label "isLocated" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isLocatedInDistrict
+:isLocatedInDistrict rdf:type owl:ObjectProperty ;
+                     owl:inverseOf :isLocatedInDistrict ;
+                     rdfs:domain :Monument ;
+                     rdfs:range :District ;
+                     rdfs:label "isLocatedInDistrict" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isLocatedInNeighborhood
+:isLocatedInNeighborhood rdf:type owl:ObjectProperty ;
+                         owl:inverseOf :isNeighborhoodOf ;
+                         rdfs:domain :Monument ;
+                         rdfs:range :Neighborhood ;
+                         rdfs:label "isLocatedInNeighborhood" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isNeighborhoodOf
+:isNeighborhoodOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Neighborhood ;
+                  rdfs:range :Monument ;
+                  rdfs:label "neighborhoodContainsMonument" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#monumentCity
+:monumentCity rdf:type owl:ObjectProperty ;
+              rdfs:domain :Monument ;
+              rdfs:range :City ;
+              rdfs:comment "City where the monument is located" ;
+              rdfs:label "isLocatedInCity" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#neighborhoodIsInDistrict
+:neighborhoodIsInDistrict rdf:type owl:ObjectProperty ;
+                          rdfs:domain :Neighborhood ;
+                          rdfs:range :District ;
+                          rdfs:label "neighborhoodIsInDistrict" .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#latitude
+:latitude rdf:type owl:DatatypeProperty ;
+          rdfs:domain :Coordinates ;
+          rdfs:range xsd:float ;
+          rdfs:label "latitude" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#longitude
+:longitude rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Coordinates ;
+           rdfs:range xsd:float ;
+           rdfs:label "longitude" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#City
+:City rdf:type owl:Class ;
+      rdfs:label "City" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Coordinates
+:Coordinates rdf:type owl:Class ;
+             rdfs:label "Location" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Country
+:Country rdf:type owl:Class ;
+         rdfs:label "Country" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#District
+:District rdf:type owl:Class ;
+          rdfs:label "District" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Monument
+:Monument rdf:type owl:Class ;
+          rdfs:label "Monument" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Neighborhood
+:Neighborhood rdf:type owl:Class ;
+              rdfs:label "Neighborhood" .
+
+
+###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
