@@ -9,6 +9,14 @@
 <http://www.semanticweb.org/vic/ontologies/2024/10/monuments> rdf:type owl:Ontology .
 
 #################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.w3.org/2001/XMLSchema#ID
+xsd:ID rdf:type rdfs:Datatype .
+
+
+#################################################################
 #    Object Properties
 #################################################################
 
@@ -82,13 +90,6 @@
                                        "isAdministrativeDivisionOf" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedAtCoordinates
-:isLocatedAtCoordinates rdf:type owl:ObjectProperty ;
-                        rdfs:domain :Monument ;
-                        rdfs:range :Coordinates ;
-                        rdfs:label "isLocatedAtCoordinates" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity
 :isLocatedInCity rdf:type owl:ObjectProperty ;
                  rdfs:domain :Monument ;
@@ -130,16 +131,66 @@
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#PK
+:PK rdf:type owl:DatatypeProperty ;
+    rdfs:domain :Monument ;
+    rdfs:range xsd:ID ;
+    rdfs:comment "Primary key or identifier" ;
+    rdfs:label "PK" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#date
+:date rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Monument ;
+      rdfs:range xsd:string ;
+      rdfs:comment "Monument construction year, exact or approximate" ;
+      rdfs:label "date" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#description
+:description rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Monument ;
+             rdfs:range xsd:string ;
+             rdfs:label "description" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#name
+:name rdf:type owl:DatatypeProperty ;
+      rdfs:domain :AdministrativeDivision ,
+                  :City ,
+                  :Country ,
+                  :District ,
+                  :Monument ,
+                  :Neighborhood ;
+      rdfs:range xsd:string ;
+      rdfs:comment "Monument name" ;
+      rdfs:label "name" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#postalCode
+:postalCode rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Monument ;
+            rdfs:range xsd:string ;
+            rdfs:label "postalCode" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#thoroughfareName
+:thoroughfareName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Monument ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "thoroughfareName" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/latitude
 :latitude rdf:type owl:DatatypeProperty ;
-          rdfs:domain :Coordinates ;
+          rdfs:domain :Monument ;
           rdfs:range xsd:float ;
           rdfs:label "latitude" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/longitude
 :longitude rdf:type owl:DatatypeProperty ;
-           rdfs:domain :Coordinates ;
+           rdfs:domain :Monument ;
            rdfs:range xsd:float ;
            rdfs:label "longitude" .
 
@@ -157,11 +208,6 @@
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City
 :City rdf:type owl:Class ;
       rdfs:label "City" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Coordinates
-:Coordinates rdf:type owl:Class ;
-             rdfs:label "Coordinates" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country
