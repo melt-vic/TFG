@@ -1,4 +1,5 @@
 @prefix : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
@@ -16,30 +17,20 @@
 xsd:ID rdf:type rdfs:Datatype .
 
 
+###  http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral
+<http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> rdf:type rdfs:Datatype .
+
+
 #################################################################
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasAdministrativeDivision
-:hasAdministrativeDivision rdf:type owl:ObjectProperty ;
-                           rdfs:domain :Country ;
-                           rdfs:range :AdministrativeDivision ;
-                           rdfs:label "hasAdministrativeDivision" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasCity
-:hasCity rdf:type owl:ObjectProperty ;
-         owl:inverseOf :isCityOf ;
-         rdfs:domain :AdministrativeDivision ;
-         rdfs:range :City ;
-         rdfs:label "hasCity" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isCityOf
-:isCityOf rdf:type owl:ObjectProperty ;
-          rdfs:domain :City ;
-          rdfs:range :AdministrativeDivision ;
-          rdfs:label "isCityOf" .
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasGeometry
+:hasGeometry rdf:type owl:ObjectProperty ;
+             rdfs:domain :Monument ;
+             rdfs:range :Geometry ;
+             rdfs:comment "Relates a monument with its geometry" ;
+             rdfs:label "hasGeometry" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf
@@ -66,6 +57,21 @@ xsd:ID rdf:type rdfs:Datatype .
                      rdfs:label "districtHasMonument" .
 
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAdministrativeDivision
+:hasAdministrativeDivision rdf:type owl:ObjectProperty ;
+                           rdfs:domain :Country ;
+                           rdfs:range :AdministrativeDivision ;
+                           rdfs:label "hasAdministrativeDivision" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasCity
+:hasCity rdf:type owl:ObjectProperty ;
+         owl:inverseOf :isCityOf ;
+         rdfs:domain :AdministrativeDivision ;
+         rdfs:range :City ;
+         rdfs:label "hasCity" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasDistrict
 :hasDistrict rdf:type owl:ObjectProperty ;
              rdfs:domain :City ;
@@ -88,6 +94,13 @@ xsd:ID rdf:type rdfs:Datatype .
                             rdfs:range :Country ;
                             rdfs:label "hasAdministrativeDivision" ,
                                        "isAdministrativeDivisionOf" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf
+:isCityOf rdf:type owl:ObjectProperty ;
+          rdfs:domain :City ;
+          rdfs:range :AdministrativeDivision ;
+          rdfs:label "isCityOf" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity
@@ -131,7 +144,15 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#PK
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#geo:asWKT
+:geo:asWKT rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Geometry ;
+           rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> ;
+           rdfs:comment "WKT representation of the geometry" ;
+           rdfs:label "geo:asWKT" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK
 :PK rdf:type owl:DatatypeProperty ;
     rdfs:domain :Monument ;
     rdfs:range xsd:ID ;
@@ -139,7 +160,7 @@ xsd:ID rdf:type rdfs:Datatype .
     rdfs:label "PK" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#date
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date
 :date rdf:type owl:DatatypeProperty ;
       rdfs:domain :Monument ;
       rdfs:range xsd:string ;
@@ -147,14 +168,14 @@ xsd:ID rdf:type rdfs:Datatype .
       rdfs:label "date" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#description
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/description
 :description rdf:type owl:DatatypeProperty ;
              rdfs:domain :Monument ;
              rdfs:range xsd:string ;
              rdfs:label "description" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#name
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name
 :name rdf:type owl:DatatypeProperty ;
       rdfs:domain :AdministrativeDivision ,
                   :City ,
@@ -167,37 +188,28 @@ xsd:ID rdf:type rdfs:Datatype .
       rdfs:label "name" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#postalCode
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
 :postalCode rdf:type owl:DatatypeProperty ;
             rdfs:domain :Monument ;
             rdfs:range xsd:string ;
             rdfs:label "postalCode" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#thoroughfareName
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName
 :thoroughfareName rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Monument ;
                   rdfs:range xsd:string ;
                   rdfs:label "thoroughfareName" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/latitude
-:latitude rdf:type owl:DatatypeProperty ;
-          rdfs:domain :Monument ;
-          rdfs:range xsd:float ;
-          rdfs:label "latitude" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/longitude
-:longitude rdf:type owl:DatatypeProperty ;
-           rdfs:domain :Monument ;
-           rdfs:range xsd:float ;
-           rdfs:label "longitude" .
-
-
 #################################################################
 #    Classes
 #################################################################
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Geometry
+:Geometry rdf:type owl:Class ;
+          rdfs:label "Geometry" .
+
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision
 :AdministrativeDivision rdf:type owl:Class ;
