@@ -7,19 +7,23 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      ontologyIRI="http://www.semanticweb.org/vic/ontologies/2024/10/monuments">
     <Prefix name="" IRI="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/"/>
+    <Prefix name="geo" IRI="http://www.opengis.net/ont/geosparql#"/>
     <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
     <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
     <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
     <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
     <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
     <Declaration>
-        <Class IRI="#AdministrativeDivision"/>
+        <Class IRI="/AbstractSculpture"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/AdministrativeDivision"/>
     </Declaration>
     <Declaration>
         <Class IRI="/City"/>
     </Declaration>
     <Declaration>
-        <Class IRI="/Coordinates"/>
+        <Class IRI="/CivilConstruction"/>
     </Declaration>
     <Declaration>
         <Class IRI="/Country"/>
@@ -28,34 +32,67 @@
         <Class IRI="/District"/>
     </Declaration>
     <Declaration>
+        <Class IRI="/Fountain"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/Gate"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/Geometry"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="/MemorialElement"/>
+    </Declaration>
+    <Declaration>
         <Class IRI="/Monument"/>
     </Declaration>
     <Declaration>
         <Class IRI="/Neighborhood"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#hasCountry"/>
+        <Class IRI="/Ornamentation"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="#isAdministrativeDivisionOf"/>
+        <Class IRI="/SculpturalGroup"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/belongsToCity"/>
+        <Class IRI="/Statue"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/belongsToDistrict"/>
+        <Class IRI="/UniqueBuilding"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/containsMonument"/>
+        <ObjectProperty IRI="/IsDistrictOf"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/districtContainsMonument"/>
+        <ObjectProperty IRI="/cityHasMonument"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/districtIsInCity"/>
+        <ObjectProperty IRI="/districtHasMonument"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/isLocated"/>
+        <ObjectProperty IRI="/hasAdministrativeDivision"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/hasCity"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/hasDistrict"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/hasGeometry"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/hasNeighborhood"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/isAdministrativeDivisionOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/isCityOf"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="/isLocatedInCity"/>
     </Declaration>
     <Declaration>
         <ObjectProperty IRI="/isLocatedInDistrict"/>
@@ -67,67 +104,141 @@
         <ObjectProperty IRI="/isNeighborhoodOf"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/monumentCity"/>
+        <ObjectProperty IRI="/neighborhoodHasMonument"/>
     </Declaration>
     <Declaration>
-        <ObjectProperty IRI="/neighborhoodIsInDistrict"/>
+        <DataProperty IRI="/PK"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="/latitude"/>
+        <DataProperty IRI="/date"/>
     </Declaration>
     <Declaration>
-        <DataProperty IRI="/longitude"/>
+        <DataProperty IRI="/description"/>
     </Declaration>
+    <Declaration>
+        <DataProperty IRI="/name"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/postalCode"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/thoroughfareName"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="/geo:asWKT"/>
+    </Declaration>
+    <Declaration>
+        <Datatype abbreviatedIRI="xsd:ID"/>
+    </Declaration>
+    <Declaration>
+        <Datatype IRI="http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="/AbstractSculpture"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/CivilConstruction"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Fountain"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Gate"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/MemorialElement"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Ornamentation"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/SculpturalGroup"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/Statue"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="/UniqueBuilding"/>
+        <Class IRI="/Monument"/>
+    </SubClassOf>
     <InverseObjectProperties>
-        <ObjectProperty IRI="#hasCountry"/>
-        <ObjectProperty IRI="#isAdministrativeDivisionOf"/>
+        <ObjectProperty IRI="/IsDistrictOf"/>
+        <ObjectProperty IRI="/hasDistrict"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="/belongsToCity"/>
-        <ObjectProperty IRI="/districtIsInCity"/>
+        <ObjectProperty IRI="/cityHasMonument"/>
+        <ObjectProperty IRI="/isLocatedInCity"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="/containsMonument"/>
-        <ObjectProperty IRI="/monumentCity"/>
-    </InverseObjectProperties>
-    <InverseObjectProperties>
-        <ObjectProperty IRI="/districtContainsMonument"/>
+        <ObjectProperty IRI="/districtHasMonument"/>
         <ObjectProperty IRI="/isLocatedInDistrict"/>
     </InverseObjectProperties>
     <InverseObjectProperties>
-        <ObjectProperty IRI="/isLocatedInNeighborhood"/>
+        <ObjectProperty IRI="/hasCity"/>
+        <ObjectProperty IRI="/isCityOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/hasNeighborhood"/>
         <ObjectProperty IRI="/isNeighborhoodOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/isAdministrativeDivisionOf"/>
+        <ObjectProperty IRI="/isAdministrativeDivisionOf"/>
+    </InverseObjectProperties>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="/isLocatedInNeighborhood"/>
+        <ObjectProperty IRI="/neighborhoodHasMonument"/>
     </InverseObjectProperties>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#hasCountry"/>
-        <Class IRI="#AdministrativeDivision"/>
+        <ObjectProperty IRI="/IsDistrictOf"/>
+        <Class IRI="/District"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="#isAdministrativeDivisionOf"/>
+        <ObjectProperty IRI="/cityHasMonument"/>
+        <Class IRI="/City"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/districtHasMonument"/>
+        <Class IRI="/District"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/hasAdministrativeDivision"/>
         <Class IRI="/Country"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="/belongsToCity"/>
+        <ObjectProperty IRI="/hasCity"/>
+        <Class IRI="/AdministrativeDivision"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/hasDistrict"/>
         <Class IRI="/City"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="/belongsToDistrict"/>
+        <ObjectProperty IRI="/hasGeometry"/>
+        <Class IRI="/Monument"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/hasNeighborhood"/>
         <Class IRI="/District"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="/containsMonument"/>
+        <ObjectProperty IRI="/isAdministrativeDivisionOf"/>
+        <Class IRI="/AdministrativeDivision"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="/isCityOf"/>
         <Class IRI="/City"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="/districtContainsMonument"/>
-        <Class IRI="/District"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="/districtIsInCity"/>
-        <Class IRI="/District"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="/isLocated"/>
+        <ObjectProperty IRI="/isLocatedInCity"/>
         <Class IRI="/Monument"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
@@ -143,44 +254,52 @@
         <Class IRI="/Neighborhood"/>
     </ObjectPropertyDomain>
     <ObjectPropertyDomain>
-        <ObjectProperty IRI="/monumentCity"/>
-        <Class IRI="/Monument"/>
-    </ObjectPropertyDomain>
-    <ObjectPropertyDomain>
-        <ObjectProperty IRI="/neighborhoodIsInDistrict"/>
+        <ObjectProperty IRI="/neighborhoodHasMonument"/>
         <Class IRI="/Neighborhood"/>
     </ObjectPropertyDomain>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="#hasCountry"/>
+        <ObjectProperty IRI="/IsDistrictOf"/>
+        <Class IRI="/City"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/cityHasMonument"/>
+        <Class IRI="/Monument"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/districtHasMonument"/>
+        <Class IRI="/Monument"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/hasAdministrativeDivision"/>
+        <Class IRI="/AdministrativeDivision"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/hasCity"/>
+        <Class IRI="/City"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/hasDistrict"/>
+        <Class IRI="/District"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/hasGeometry"/>
+        <Class IRI="/Geometry"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/hasNeighborhood"/>
+        <Class IRI="/Neighborhood"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/isAdministrativeDivisionOf"/>
         <Class IRI="/Country"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="#isAdministrativeDivisionOf"/>
-        <Class IRI="#AdministrativeDivision"/>
+        <ObjectProperty IRI="/isCityOf"/>
+        <Class IRI="/AdministrativeDivision"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
-        <ObjectProperty IRI="/belongsToCity"/>
-        <Class IRI="/District"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/belongsToDistrict"/>
-        <Class IRI="/Neighborhood"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/containsMonument"/>
-        <Class IRI="/Monument"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/districtContainsMonument"/>
-        <Class IRI="/Monument"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/districtIsInCity"/>
+        <ObjectProperty IRI="/isLocatedInCity"/>
         <Class IRI="/City"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/isLocated"/>
-        <Class IRI="/Coordinates"/>
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="/isLocatedInDistrict"/>
@@ -192,46 +311,107 @@
     </ObjectPropertyRange>
     <ObjectPropertyRange>
         <ObjectProperty IRI="/isNeighborhoodOf"/>
-        <Class IRI="/Monument"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/monumentCity"/>
-        <Class IRI="/City"/>
-    </ObjectPropertyRange>
-    <ObjectPropertyRange>
-        <ObjectProperty IRI="/neighborhoodIsInDistrict"/>
         <Class IRI="/District"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="/neighborhoodHasMonument"/>
+        <Class IRI="/Monument"/>
     </ObjectPropertyRange>
     <DataPropertyDomain>
-        <DataProperty IRI="/latitude"/>
-        <Class IRI="/Coordinates"/>
+        <DataProperty IRI="/PK"/>
+        <Class IRI="/Monument"/>
     </DataPropertyDomain>
     <DataPropertyDomain>
-        <DataProperty IRI="/longitude"/>
-        <Class IRI="/Coordinates"/>
+        <DataProperty IRI="/date"/>
+        <Class IRI="/Monument"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/description"/>
+        <Class IRI="/Monument"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/AdministrativeDivision"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/City"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/Country"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/District"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/Monument"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/name"/>
+        <Class IRI="/Neighborhood"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/postalCode"/>
+        <Class IRI="/Monument"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/thoroughfareName"/>
+        <Class IRI="/Monument"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="/geo:asWKT"/>
+        <Class IRI="/Geometry"/>
     </DataPropertyDomain>
     <DataPropertyRange>
-        <DataProperty IRI="/latitude"/>
-        <Datatype abbreviatedIRI="xsd:float"/>
+        <DataProperty IRI="/PK"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
     </DataPropertyRange>
     <DataPropertyRange>
-        <DataProperty IRI="/longitude"/>
-        <Datatype abbreviatedIRI="xsd:float"/>
+        <DataProperty IRI="/date"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/description"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/name"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/postalCode"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/thoroughfareName"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="/geo:asWKT"/>
+        <Datatype IRI="http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral"/>
     </DataPropertyRange>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/AbstractSculpture</IRI>
+        <Literal>Conceptual or abstract sculpture</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#AdministrativeDivision</IRI>
+        <IRI>/AbstractSculpture</IRI>
+        <Literal>AbstractSculpture</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/AdministrativeDivision</IRI>
+        <Literal>Province, state, prefecture, deparment...</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/AdministrativeDivision</IRI>
         <Literal>AdministrativeDivision</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#hasCountry</IRI>
-        <Literal>isAdministrativeDivisionOf</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>#isAdministrativeDivisionOf</IRI>
-        <Literal>hasCountry</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -239,9 +419,14 @@
         <Literal>City</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/CivilConstruction</IRI>
+        <Literal>Bridge or civil construction</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/Coordinates</IRI>
-        <Literal>Coordinates</Literal>
+        <IRI>/CivilConstruction</IRI>
+        <Literal>CivilConstruction</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -254,6 +439,46 @@
         <Literal>District</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Fountain</IRI>
+        <Literal>Fountain, pond or water feature</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Fountain</IRI>
+        <Literal>Fountain</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Gate</IRI>
+        <Literal>Gate or triumphal arch</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Gate</IRI>
+        <Literal>Gate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Geometry</IRI>
+        <Literal>Geometry</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/IsDistrictOf</IRI>
+        <Literal>IsDistrictOf</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/MemorialElement</IRI>
+        <Literal>Memorial element or tombstone</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/MemorialElement</IRI>
+        <Literal>MemorialElement</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>/Monument</IRI>
         <Literal>Monument</Literal>
@@ -264,34 +489,134 @@
         <Literal>Neighborhood</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/belongsToCity</IRI>
-        <Literal>hasDistrict</Literal>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Ornamentation</IRI>
+        <Literal>Ornamental element</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/belongsToDistrict</IRI>
-        <Literal>hasNeighborhood</Literal>
+        <IRI>/Ornamentation</IRI>
+        <Literal>Ornamentation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/PK</IRI>
+        <Literal>Primary key or identifier</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/containsMonument</IRI>
+        <IRI>/PK</IRI>
+        <Literal>PK</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/SculpturalGroup</IRI>
+        <Literal>Sculptural Group</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/SculpturalGroup</IRI>
+        <Literal>SculpturalGroup</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/Statue</IRI>
+        <Literal>Statue</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/Statue</IRI>
+        <Literal>Statue</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/UniqueBuilding</IRI>
+        <Literal>Singular construction</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/UniqueBuilding</IRI>
+        <Literal>UniqueBuilding</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/cityHasMonument</IRI>
         <Literal>cityHasMonument</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/date</IRI>
+        <Literal>Monument construction year, exact or approximate</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/districtContainsMonument</IRI>
+        <IRI>/date</IRI>
+        <Literal>date</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/description</IRI>
+        <Literal>description</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/districtHasMonument</IRI>
         <Literal>districtHasMonument</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/districtIsInCity</IRI>
-        <Literal>IsDistrictOf</Literal>
+        <IRI>/hasAdministrativeDivision</IRI>
+        <Literal>hasAdministrativeDivision</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/isLocated</IRI>
-        <Literal>isLocatedAtCoordinates</Literal>
+        <IRI>/hasCity</IRI>
+        <Literal>hasCity</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/hasDistrict</IRI>
+        <Literal>hasDistrict</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/hasGeometry</IRI>
+        <Literal>Relates a monument with its geometry</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/hasGeometry</IRI>
+        <Literal>hasGeometry</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/hasNeighborhood</IRI>
+        <Literal>hasNeighborhood</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/isAdministrativeDivisionOf</IRI>
+        <Literal>hasAdministrativeDivision</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/isAdministrativeDivisionOf</IRI>
+        <Literal>isAdministrativeDivisionOf</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/isCityOf</IRI>
+        <Literal>isCityOf</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/isLocatedInCity</IRI>
+        <Literal>City where the monument is located</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/isLocatedInCity</IRI>
+        <Literal>isLocatedInCity</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
@@ -306,32 +631,42 @@
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
         <IRI>/isNeighborhoodOf</IRI>
+        <Literal>isNeighborhoodOf</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
+        <IRI>/name</IRI>
+        <Literal>Monument name</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/name</IRI>
+        <Literal>name</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>/neighborhoodHasMonument</IRI>
         <Literal>neighborhoodHasMonument</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/latitude</IRI>
-        <Literal>latitude</Literal>
+        <IRI>/postalCode</IRI>
+        <Literal>postalCode</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/longitude</IRI>
-        <Literal>longitude</Literal>
+        <IRI>/thoroughfareName</IRI>
+        <Literal>thoroughfareName</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:comment"/>
-        <IRI>/monumentCity</IRI>
-        <Literal>City where the monument is located</Literal>
+        <IRI>/geo:asWKT</IRI>
+        <Literal>WKT representation of the geometry</Literal>
     </AnnotationAssertion>
     <AnnotationAssertion>
         <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/monumentCity</IRI>
-        <Literal>isLocatedInCity</Literal>
-    </AnnotationAssertion>
-    <AnnotationAssertion>
-        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
-        <IRI>/neighborhoodIsInDistrict</IRI>
-        <Literal>isNeighborhoodOf</Literal>
+        <IRI>/geo:asWKT</IRI>
+        <Literal>geo:asWKT</Literal>
     </AnnotationAssertion>
 </Ontology>
 

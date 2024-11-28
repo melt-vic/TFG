@@ -25,14 +25,6 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasGeometry
-:hasGeometry rdf:type owl:ObjectProperty ;
-             rdfs:domain :Monument ;
-             rdfs:range :Geometry ;
-             rdfs:comment "Relates a monument with its geometry" ;
-             rdfs:label "hasGeometry" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf
 :IsDistrictOf rdf:type owl:ObjectProperty ;
               owl:inverseOf :hasDistrict ;
@@ -77,6 +69,14 @@ xsd:ID rdf:type rdfs:Datatype .
              rdfs:domain :City ;
              rdfs:range :District ;
              rdfs:label "hasDistrict" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasGeometry
+:hasGeometry rdf:type owl:ObjectProperty ;
+             rdfs:domain :Monument ;
+             rdfs:range :Geometry ;
+             rdfs:comment "Relates a monument with its geometry" ;
+             rdfs:label "hasGeometry" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasNeighborhood
@@ -144,18 +144,25 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#geo:asWKT
-:geo:asWKT rdf:type owl:DatatypeProperty ;
-           rdfs:domain :Geometry ;
-           rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> ;
-           rdfs:comment "WKT representation of the geometry" ;
-           rdfs:label "geo:asWKT" .
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#address
+:address rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Monument ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Monument address" ;
+         rdfs:label "address" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#postalCode
+:postalCode rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:comment "Monument postal code" ;
+            rdfs:label "postalCode" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK
 :PK rdf:type owl:DatatypeProperty ;
     rdfs:domain :Monument ;
-    rdfs:range xsd:ID ;
+    rdfs:range xsd:string ;
     rdfs:comment "Primary key or identifier" ;
     rdfs:label "PK" .
 
@@ -188,13 +195,6 @@ xsd:ID rdf:type rdfs:Datatype .
       rdfs:label "name" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
-:postalCode rdf:type owl:DatatypeProperty ;
-            rdfs:domain :Monument ;
-            rdfs:range xsd:string ;
-            rdfs:label "postalCode" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName
 :thoroughfareName rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Monument ;
@@ -202,13 +202,23 @@ xsd:ID rdf:type rdfs:Datatype .
                   rdfs:label "thoroughfareName" .
 
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/geo:asWKT
+:geo:asWKT rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Geometry ;
+           rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> ;
+           rdfs:comment "WKT representation of the geometry" ;
+           rdfs:label "geo:asWKT" .
+
+
 #################################################################
 #    Classes
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#Geometry
-:Geometry rdf:type owl:Class ;
-          rdfs:label "Geometry" .
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AbstractSculpture
+:AbstractSculpture rdf:type owl:Class ;
+                   rdfs:subClassOf :Monument ;
+                   rdfs:comment "Conceptual or abstract sculpture" ;
+                   rdfs:label "AbstractSculpture" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision
@@ -217,9 +227,22 @@ xsd:ID rdf:type rdfs:Datatype .
                         rdfs:label "AdministrativeDivision" .
 
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Author
+:Author rdf:type owl:Class ;
+        rdfs:comment "Monument's author" ;
+        rdfs:label "Author" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City
 :City rdf:type owl:Class ;
       rdfs:label "City" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/CivilConstruction
+:CivilConstruction rdf:type owl:Class ;
+                   rdfs:subClassOf :Monument ;
+                   rdfs:comment "Bridge or civil construction" ;
+                   rdfs:label "CivilConstruction" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country
@@ -232,6 +255,32 @@ xsd:ID rdf:type rdfs:Datatype .
           rdfs:label "District" .
 
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Fountain
+:Fountain rdf:type owl:Class ;
+          rdfs:subClassOf :Monument ;
+          rdfs:comment "Fountain, pond or water feature" ;
+          rdfs:label "Fountain" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Gate
+:Gate rdf:type owl:Class ;
+      rdfs:subClassOf :Monument ;
+      rdfs:comment "Gate or triumphal arch" ;
+      rdfs:label "Gate" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry
+:Geometry rdf:type owl:Class ;
+          rdfs:label "Geometry" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/MemorialElement
+:MemorialElement rdf:type owl:Class ;
+                 rdfs:subClassOf :Monument ;
+                 rdfs:comment "Memorial element or tombstone" ;
+                 rdfs:label "MemorialElement" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument
 :Monument rdf:type owl:Class ;
           rdfs:label "Monument" .
@@ -240,6 +289,34 @@ xsd:ID rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood
 :Neighborhood rdf:type owl:Class ;
               rdfs:label "Neighborhood" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Ornamentation
+:Ornamentation rdf:type owl:Class ;
+               rdfs:subClassOf :Monument ;
+               rdfs:comment "Ornamental element" ;
+               rdfs:label "Ornamentation" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/SculpturalGroup
+:SculpturalGroup rdf:type owl:Class ;
+                 rdfs:subClassOf :Monument ;
+                 rdfs:comment "Sculptural Group" ;
+                 rdfs:label "SculpturalGroup" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Statue
+:Statue rdf:type owl:Class ;
+        rdfs:subClassOf :Monument ;
+        rdfs:comment "Statue" ;
+        rdfs:label "Statue" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/UniqueBuilding
+:UniqueBuilding rdf:type owl:Class ;
+                rdfs:subClassOf :Monument ;
+                rdfs:comment "Singular construction" ;
+                rdfs:label "UniqueBuilding" .
 
 
 ###  Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi
