@@ -25,6 +25,20 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasAuthor
+:hasAuthor rdf:type owl:ObjectProperty ;
+           rdfs:domain :Monument ;
+           rdfs:range :Author ;
+           rdfs:label "hasAuthor" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isAuthorOf
+:isAuthorOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Author ;
+            rdfs:range :Monument ;
+            rdfs:label "isAuthorOf" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf
 :IsDistrictOf rdf:type owl:ObjectProperty ;
               owl:inverseOf :hasDistrict ;
@@ -144,27 +158,20 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Data properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#address
-:address rdf:type owl:DatatypeProperty ;
-         rdfs:domain :Monument ;
-         rdfs:range xsd:string ;
-         rdfs:comment "Monument address" ;
-         rdfs:label "address" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#postalCode
-:postalCode rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf owl:topDataProperty ;
-            rdfs:comment "Monument postal code" ;
-            rdfs:label "postalCode" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK
 :PK rdf:type owl:DatatypeProperty ;
     rdfs:domain :Monument ;
     rdfs:range xsd:string ;
     rdfs:comment "Primary key or identifier" ;
     rdfs:label "PK" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/address
+:address rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Monument ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Monument address" ;
+         rdfs:label "address" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date
@@ -193,6 +200,13 @@ xsd:ID rdf:type rdfs:Datatype .
       rdfs:range xsd:string ;
       rdfs:comment "Monument name" ;
       rdfs:label "name" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
+:postalCode rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf owl:topDataProperty ;
+            rdfs:comment "Monument postal code" ;
+            rdfs:label "postalCode" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName
