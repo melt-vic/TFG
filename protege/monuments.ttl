@@ -25,25 +25,12 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#hasAuthor
-:hasAuthor rdf:type owl:ObjectProperty ;
-           rdfs:domain :Monument ;
-           rdfs:range :Author ;
-           rdfs:label "hasAuthor" .
-
-
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#isAuthorOf
-:isAuthorOf rdf:type owl:ObjectProperty ;
-            rdfs:domain :Author ;
-            rdfs:range :Monument ;
-            rdfs:label "isAuthorOf" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf
 :IsDistrictOf rdf:type owl:ObjectProperty ;
               owl:inverseOf :hasDistrict ;
               rdfs:domain :District ;
               rdfs:range :City ;
+              rdfs:comment "Inverse relation of hasDistrict" ;
               rdfs:label "IsDistrictOf" .
 
 
@@ -68,6 +55,13 @@ xsd:ID rdf:type rdfs:Datatype .
                            rdfs:domain :Country ;
                            rdfs:range :AdministrativeDivision ;
                            rdfs:label "hasAdministrativeDivision" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAuthor
+:hasAuthor rdf:type owl:ObjectProperty ;
+           rdfs:domain :Monument ;
+           rdfs:range :Author ;
+           rdfs:label "hasAuthor" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasCity
@@ -106,14 +100,23 @@ xsd:ID rdf:type rdfs:Datatype .
                             owl:inverseOf :isAdministrativeDivisionOf ;
                             rdfs:domain :AdministrativeDivision ;
                             rdfs:range :Country ;
-                            rdfs:label "hasAdministrativeDivision" ,
-                                       "isAdministrativeDivisionOf" .
+                            rdfs:comment "Inverse relation of hasAdministrativeDivision" ;
+                            rdfs:label "isAdministrativeDivisionOf" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAuthorOf
+:isAuthorOf rdf:type owl:ObjectProperty ;
+            rdfs:domain :Author ;
+            rdfs:range :Monument ;
+            rdfs:comment "Inverse relation of hasAuthor" ;
+            rdfs:label "isAuthorOf" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf
 :isCityOf rdf:type owl:ObjectProperty ;
           rdfs:domain :City ;
           rdfs:range :AdministrativeDivision ;
+          rdfs:comment "Inverse relation of hasCity" ;
           rdfs:label "isCityOf" .
 
 
@@ -121,7 +124,7 @@ xsd:ID rdf:type rdfs:Datatype .
 :isLocatedInCity rdf:type owl:ObjectProperty ;
                  rdfs:domain :Monument ;
                  rdfs:range :City ;
-                 rdfs:comment "City where the monument is located" ;
+                 rdfs:comment "City where the monument is located. Inverse relation of cityHasMonument" ;
                  rdfs:label "isLocatedInCity" .
 
 
@@ -129,6 +132,7 @@ xsd:ID rdf:type rdfs:Datatype .
 :isLocatedInDistrict rdf:type owl:ObjectProperty ;
                      rdfs:domain :Monument ;
                      rdfs:range :District ;
+                     rdfs:comment "Inverse relation of districtHasMonument" ;
                      rdfs:label "isLocatedInDistrict" .
 
 
@@ -137,6 +141,7 @@ xsd:ID rdf:type rdfs:Datatype .
                          owl:inverseOf :neighborhoodHasMonument ;
                          rdfs:domain :Monument ;
                          rdfs:range :Neighborhood ;
+                         rdfs:comment "Inverse relation of neighborhoodHasMonument" ;
                          rdfs:label "isLocatedInNeighborhood" .
 
 
@@ -144,6 +149,7 @@ xsd:ID rdf:type rdfs:Datatype .
 :isNeighborhoodOf rdf:type owl:ObjectProperty ;
                   rdfs:domain :Neighborhood ;
                   rdfs:range :District ;
+                  rdfs:comment "Inverse relation of hasNeighborhood" ;
                   rdfs:label "isNeighborhoodOf" .
 
 
@@ -162,7 +168,7 @@ xsd:ID rdf:type rdfs:Datatype .
 :PK rdf:type owl:DatatypeProperty ;
     rdfs:domain :Monument ;
     rdfs:range xsd:string ;
-    rdfs:comment "Primary key or identifier" ;
+    rdfs:comment "Monument primary key or identifier" ;
     rdfs:label "PK" .
 
 
@@ -186,6 +192,7 @@ xsd:ID rdf:type rdfs:Datatype .
 :description rdf:type owl:DatatypeProperty ;
              rdfs:domain :Monument ;
              rdfs:range xsd:string ;
+             rdfs:comment "Monument description" ;
              rdfs:label "description" .
 
 
@@ -209,13 +216,6 @@ xsd:ID rdf:type rdfs:Datatype .
             rdfs:label "postalCode" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName
-:thoroughfareName rdf:type owl:DatatypeProperty ;
-                  rdfs:domain :Monument ;
-                  rdfs:range xsd:string ;
-                  rdfs:label "thoroughfareName" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/geo:asWKT
 :geo:asWKT rdf:type owl:DatatypeProperty ;
            rdfs:domain :Geometry ;
@@ -237,7 +237,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision
 :AdministrativeDivision rdf:type owl:Class ;
-                        rdfs:comment "Province, state, prefecture, deparment..." ;
+                        rdfs:comment "Administrative division of the country where the monument is located. It can be a province, state, prefecture, deparment, etc" ;
                         rdfs:label "AdministrativeDivision" .
 
 
@@ -249,6 +249,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City
 :City rdf:type owl:Class ;
+      rdfs:comment "City of the country where the monument is located" ;
       rdfs:label "City" .
 
 
@@ -261,11 +262,13 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country
 :Country rdf:type owl:Class ;
+         rdfs:comment "Country where the monument is located" ;
          rdfs:label "Country" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District
 :District rdf:type owl:Class ;
+          rdfs:comment "District of the city where the monument is located." ;
           rdfs:label "District" .
 
 
@@ -285,6 +288,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry
 :Geometry rdf:type owl:Class ;
+          rdfs:comment "Class for geolocation of the monument" ;
           rdfs:label "Geometry" .
 
 
@@ -297,11 +301,13 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument
 :Monument rdf:type owl:Class ;
+          rdfs:comment "Superclass for all the monument types" ;
           rdfs:label "Monument" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood
 :Neighborhood rdf:type owl:Class ;
+              rdfs:comment "Neighborhood of the district where the monument is located" ;
               rdfs:label "Neighborhood" .
 
 
