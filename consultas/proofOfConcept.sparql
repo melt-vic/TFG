@@ -1,13 +1,13 @@
-https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=eb8e993ae322b610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default
+#https://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=eb8e993ae322b610VgnVCM1000001d4a900aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD&vgnextfmt=default
 
-https://datosabiertos.malaga.eu/en/dataset/monumentos/resource/89bba578-b91b-4aff-92bc-c950d0e5b5b2
-https://datosabiertos.malaga.eu/en/dataset/monumentos/resource/5dd56c7f-402d-4664-bf7c-432f6726bdcc
+#https://datosabiertos.malaga.eu/en/dataset/monumentos/resource/89bba578-b91b-4aff-92bc-c950d0e5b5b2
+#https://datosabiertos.malaga.eu/en/dataset/monumentos/resource/5dd56c7f-402d-4664-bf7c-432f6726bdcc
 
-Las consultas con GeoSPARQL sólo sirven para consultas con datos almacenados localmente (debo mirar cómo almacenar localmente las coordenadas). Para consultas a servicios externos, DBpedia o Wikidata, no sirve. Para encontrar el monumento de mi ontología en Wikidata mediante sus coordenadas, debo hacerlo de forma parecida a: FILTER(ABS(?latitud - 40.40963497841015) < 0.001
+#Las consultas con GeoSPARQL sólo sirven para consultas con datos almacenados localmente (debo mirar cómo almacenar localmente las coordenadas). Para consultas a servicios externos, DBpedia o Wikidata, no sirve. Para encontrar el monumento de mi ontología en Wikidata mediante sus coordenadas, debo hacerlo de forma parecida a: FILTER(ABS(?latitud - 40.40963497841015) < 0.001
 
 
-DBpedia:
-Esta es la antigua que por alguna razón no funciona (no sé si han cambiado algo en DBpedia):
+#DBpedia:
+#Esta es la antigua que por alguna razón no funciona (no sé si han cambiado algo en DBpedia):
 PREFIX dcterms: <http://purl.org/dc/terms/>
 SELECT distinct ?Monumentos ?abstract ?architect ?image ?autor ?lat ?long
 WHERE {
@@ -21,7 +21,7 @@ WHERE {
 }
 
 
-Nueva consulta:
+#Nueva consulta:
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX dbo: <http://dbpedia.org/ontology/>
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
@@ -39,9 +39,9 @@ WHERE {
 }
 
 
-Wikidata:
+#Wikidata:
 
-Consulta para monumentos y estatuas:
+#Consulta para monumentos y estatuas:
 SELECT ?monumento ?monumentoLabel ?coordenadas ?autor ?autorLabel ?bibliografia ?bibliografiaLabel
 WHERE {
   ?monumento wdt:P31 ?tipo;          # Instancia de tipo
@@ -55,7 +55,7 @@ WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],es". }
 }
 
-La misma consulta de Apache Jena:
+#La misma consulta de Apache Jena:
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX geof: <http://www.opengis.net/ont/geosparql#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -79,7 +79,7 @@ WHERE {
 }
 }
 
-Forma chunga de hacerlo vía coordenadas (deben ser exactamente las mismas que almacena Wikidata):
+#Forma chunga de hacerlo vía coordenadas (deben ser exactamente las mismas que almacena Wikidata):
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX geof: <http://www.opengis.net/ont/geosparql#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
@@ -105,7 +105,7 @@ WHERE {
   }
 }
 
-También puedo hacerlo por el catalogCode (es el campo PK del CSV), e incluso por describedAtURL:
+#También puedo hacerlo por el catalogCode (es el campo PK del CSV), e incluso por describedAtURL:
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 PREFIX geof: <http://www.opengis.net/ont/geosparql#>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>

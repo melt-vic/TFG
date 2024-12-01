@@ -1,0 +1,26 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?name ?typeLabel ?date ?address ?description ?postalCode
+WHERE { 
+    ?neighborhood :name "GOYA" .
+    ?monument :isLocatedInNeighborhood ?neighborhood ;
+     	rdf:type ?type .
+	?type rdfs:label ?typeLabel .
+    ?monument :name ?name .
+    OPTIONAL { ?monument :postalCode ?postalCode . }
+    OPTIONAL { ?monument :description ?description . }
+    OPTIONAL { ?monument :date ?date . }
+    OPTIONAL { ?monument :address ?address . }
+}
+
+SELECT ?monument ?name
+WHERE {
+    ?district :name "CENTRO" .
+    ?monument :isLocatedInDistrict ?district ;
+              :name ?name .
+}
+
+
+

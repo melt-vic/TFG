@@ -211,7 +211,6 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
 :postalCode rdf:type owl:DatatypeProperty ;
-            rdfs:subPropertyOf owl:topDataProperty ;
             rdfs:comment "Monument postal code" ;
             rdfs:label "postalCode" .
 
