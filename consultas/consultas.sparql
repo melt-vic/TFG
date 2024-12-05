@@ -1,3 +1,61 @@
+#Todos los monumentos de un distrito:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?name
+WHERE {
+    ?district :name "CENTRO" .
+    ?monument :isLocatedInDistrict ?district ;
+              :name ?name .
+}
+
+
+#Todos los monumentos de un barrio:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?name
+WHERE {
+    ?neighborhood :name "GOYA" .
+    ?monument :isLocatedInNeighborhood ?neighborhood ;
+              :name ?name .
+}
+
+
+#Monumento a partir de su nombre:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?date ?address ?description 
+WHERE {
+    ?monument :name "Conjunto escultórico parque Arquitecto Antonio Palacios" ;
+              :date ?date ;
+              :address ?address ;
+              :description ?description ;
+  			  rdf:type ?type .
+  	      	  ?type rdfs:label ?typeLabel
+}
+
+#Monumento a partir de su nombre aproximado:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?typeLabel ?name ?date ?address ?description 
+WHERE {
+    ?monument :name ?name ;
+    		  :date ?date ;
+              :address ?address ;
+              :description ?description ;
+              rdf:type ?type .
+  	      ?type rdfs:label ?typeLabel
+    FILTER(CONTAINS(LCASE(?name), "parque arquitecto antonio palacios")) .
+}
+
+# Todos los monumentos del barrio Goya con sus propiedades:
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
@@ -9,18 +67,29 @@ WHERE {
      	rdf:type ?type .
 	?type rdfs:label ?typeLabel .
     ?monument :name ?name .
+    # Cada propiedad en su propio bloque OPTIONAL o si una no está
+    # definida tampoco se mostrarán las demás propiedades.
     OPTIONAL { ?monument :postalCode ?postalCode . }
     OPTIONAL { ?monument :description ?description . }
     OPTIONAL { ?monument :date ?date . }
     OPTIONAL { ?monument :address ?address . }
 }
 
-SELECT ?monument ?name
-WHERE {
-    ?district :name "CENTRO" .
-    ?monument :isLocatedInDistrict ?district ;
-              :name ?name .
+#Todos los monumentos de un/a autor/a:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?name ?description ?typeLabel ?date ?address ?postalCode
+WHERE { 
+    ?author :name "ANTONINI, Lucía" .
+    ?monument :hasAuthor ?author ;
+     	rdf:type ?type .
+	?type rdfs:label ?typeLabel .
+    ?monument :name ?name .
+    OPTIONAL { ?monument :postalCode ?postalCode . }
+    OPTIONAL { ?monument :description ?description . }
+    OPTIONAL { ?monument :date ?date . }
+    OPTIONAL { ?monument :address ?address . }
 }
-
-
 

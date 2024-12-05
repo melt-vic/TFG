@@ -164,6 +164,55 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Data properties
 #################################################################
 
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#administrativeDivisionName
+:administrativeDivisionName rdf:type owl:DatatypeProperty ;
+                            rdfs:domain :AdministrativeDivision ;
+                            rdfs:range xsd:string ;
+                            rdfs:label "administrativeDivisionName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#authorName
+:authorName rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Author ;
+            rdfs:range xsd:string ;
+            rdfs:label "authorName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#cityName
+:cityName rdf:type owl:DatatypeProperty ;
+          rdfs:domain :City ;
+          rdfs:range xsd:string ;
+          rdfs:label "cityName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#countryName
+:countryName rdf:type owl:DatatypeProperty ;
+             rdfs:domain :Country ;
+             rdfs:range xsd:string ;
+             rdfs:label "countryName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#districtName
+:districtName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :District ;
+              rdfs:range xsd:string ;
+              rdfs:label "districtName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#monumentName
+:monumentName rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Monument ;
+              rdfs:range xsd:string ;
+              rdfs:label "monumentName" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments#neighborhoodName
+:neighborhoodName rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Neighborhood ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "neighborhoodName" .
+
+
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK
 :PK rdf:type owl:DatatypeProperty ;
     rdfs:domain :Monument ;
@@ -196,23 +245,8 @@ xsd:ID rdf:type rdfs:Datatype .
              rdfs:label "description" .
 
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name
-:name rdf:type owl:DatatypeProperty ;
-      rdfs:domain :AdministrativeDivision ,
-                  :City ,
-                  :Country ,
-                  :District ,
-                  :Monument ,
-                  :Neighborhood ;
-      rdfs:range xsd:string ;
-      rdfs:comment "Monument name" ;
-      rdfs:label "name" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
 :postalCode rdf:type owl:DatatypeProperty ;
-            rdfs:domain :Monument ;
-            rdfs:range xsd:string ;
             rdfs:comment "Monument postal code" ;
             rdfs:label "postalCode" .
 
