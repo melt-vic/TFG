@@ -55,6 +55,23 @@ WHERE {
     FILTER(CONTAINS(LCASE(?name), "parque arquitecto antonio palacios")) .
 }
 
+#Monumentos construidos en un año aproximado:
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?monument ?typeLabel ?name ?date ?address ?description 
+WHERE {
+    ?monument :name ?name ;
+    		  :date ?date ;
+              :address ?address ;
+              :description ?description ;
+              rdf:type ?type .
+  	      ?type rdfs:label ?typeLabel
+    FILTER(CONTAINS(LCASE(?date), "1990")) .
+}
+
+
 # Todos los monumentos del barrio Goya con sus propiedades:
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
