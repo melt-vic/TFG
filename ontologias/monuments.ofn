@@ -1,0 +1,303 @@
+Prefix(:=<http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>)
+Prefix(geo:=<http://www.opengis.net/ont/geosparql#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://www.semanticweb.org/vic/ontologies/2024/10/monuments>
+
+Declaration(Class(:AbstractSculpture))
+Declaration(Class(:AdministrativeDivision))
+Declaration(Class(:City))
+Declaration(Class(:CivilConstruction))
+Declaration(Class(:Country))
+Declaration(Class(:District))
+Declaration(Class(:Fountain))
+Declaration(Class(:Gate))
+Declaration(Class(:Geometry))
+Declaration(Class(:MemorialElement))
+Declaration(Class(:Monument))
+Declaration(Class(:Neighborhood))
+Declaration(Class(:Ornamentation))
+Declaration(Class(:SculpturalGroup))
+Declaration(Class(:Statue))
+Declaration(Class(:UniqueBuilding))
+Declaration(ObjectProperty(:IsDistrictOf))
+Declaration(ObjectProperty(:cityHasMonument))
+Declaration(ObjectProperty(:districtHasMonument))
+Declaration(ObjectProperty(:hasAdministrativeDivision))
+Declaration(ObjectProperty(:hasCity))
+Declaration(ObjectProperty(:hasDistrict))
+Declaration(ObjectProperty(:hasGeometry))
+Declaration(ObjectProperty(:hasNeighborhood))
+Declaration(ObjectProperty(:isAdministrativeDivisionOf))
+Declaration(ObjectProperty(:isCityOf))
+Declaration(ObjectProperty(:isLocatedInCity))
+Declaration(ObjectProperty(:isLocatedInDistrict))
+Declaration(ObjectProperty(:isLocatedInNeighborhood))
+Declaration(ObjectProperty(:isNeighborhoodOf))
+Declaration(ObjectProperty(:neighborhoodHasMonument))
+Declaration(DataProperty(:PK))
+Declaration(DataProperty(:date))
+Declaration(DataProperty(:description))
+Declaration(DataProperty(:name))
+Declaration(DataProperty(:postalCode))
+Declaration(DataProperty(:thoroughfareName))
+Declaration(DataProperty(:geo:asWKT))
+Declaration(Datatype(xsd:ID))
+Declaration(Datatype(<http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral>))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :IsDistrictOf (IsDistrictOf)
+
+AnnotationAssertion(rdfs:label :IsDistrictOf "IsDistrictOf")
+InverseObjectProperties(:IsDistrictOf :hasDistrict)
+ObjectPropertyDomain(:IsDistrictOf :District)
+ObjectPropertyRange(:IsDistrictOf :City)
+
+# Object Property: :cityHasMonument (cityHasMonument)
+
+AnnotationAssertion(rdfs:label :cityHasMonument "cityHasMonument")
+InverseObjectProperties(:cityHasMonument :isLocatedInCity)
+ObjectPropertyDomain(:cityHasMonument :City)
+ObjectPropertyRange(:cityHasMonument :Monument)
+
+# Object Property: :districtHasMonument (districtHasMonument)
+
+AnnotationAssertion(rdfs:label :districtHasMonument "districtHasMonument")
+InverseObjectProperties(:districtHasMonument :isLocatedInDistrict)
+ObjectPropertyDomain(:districtHasMonument :District)
+ObjectPropertyRange(:districtHasMonument :Monument)
+
+# Object Property: :hasAdministrativeDivision (hasAdministrativeDivision)
+
+AnnotationAssertion(rdfs:label :hasAdministrativeDivision "hasAdministrativeDivision")
+ObjectPropertyDomain(:hasAdministrativeDivision :Country)
+ObjectPropertyRange(:hasAdministrativeDivision :AdministrativeDivision)
+
+# Object Property: :hasCity (hasCity)
+
+AnnotationAssertion(rdfs:label :hasCity "hasCity")
+InverseObjectProperties(:hasCity :isCityOf)
+ObjectPropertyDomain(:hasCity :AdministrativeDivision)
+ObjectPropertyRange(:hasCity :City)
+
+# Object Property: :hasDistrict (hasDistrict)
+
+AnnotationAssertion(rdfs:label :hasDistrict "hasDistrict")
+ObjectPropertyDomain(:hasDistrict :City)
+ObjectPropertyRange(:hasDistrict :District)
+
+# Object Property: :hasGeometry (hasGeometry)
+
+AnnotationAssertion(rdfs:comment :hasGeometry "Relates a monument with its geometry")
+AnnotationAssertion(rdfs:label :hasGeometry "hasGeometry")
+ObjectPropertyDomain(:hasGeometry :Monument)
+ObjectPropertyRange(:hasGeometry :Geometry)
+
+# Object Property: :hasNeighborhood (hasNeighborhood)
+
+AnnotationAssertion(rdfs:label :hasNeighborhood "hasNeighborhood")
+InverseObjectProperties(:hasNeighborhood :isNeighborhoodOf)
+ObjectPropertyDomain(:hasNeighborhood :District)
+ObjectPropertyRange(:hasNeighborhood :Neighborhood)
+
+# Object Property: :isAdministrativeDivisionOf (hasAdministrativeDivision)
+
+AnnotationAssertion(rdfs:label :isAdministrativeDivisionOf "hasAdministrativeDivision")
+AnnotationAssertion(rdfs:label :isAdministrativeDivisionOf "isAdministrativeDivisionOf")
+InverseObjectProperties(:isAdministrativeDivisionOf :isAdministrativeDivisionOf)
+ObjectPropertyDomain(:isAdministrativeDivisionOf :AdministrativeDivision)
+ObjectPropertyRange(:isAdministrativeDivisionOf :Country)
+
+# Object Property: :isCityOf (isCityOf)
+
+AnnotationAssertion(rdfs:label :isCityOf "isCityOf")
+ObjectPropertyDomain(:isCityOf :City)
+ObjectPropertyRange(:isCityOf :AdministrativeDivision)
+
+# Object Property: :isLocatedInCity (isLocatedInCity)
+
+AnnotationAssertion(rdfs:comment :isLocatedInCity "City where the monument is located")
+AnnotationAssertion(rdfs:label :isLocatedInCity "isLocatedInCity")
+ObjectPropertyDomain(:isLocatedInCity :Monument)
+ObjectPropertyRange(:isLocatedInCity :City)
+
+# Object Property: :isLocatedInDistrict (isLocatedInDistrict)
+
+AnnotationAssertion(rdfs:label :isLocatedInDistrict "isLocatedInDistrict")
+ObjectPropertyDomain(:isLocatedInDistrict :Monument)
+ObjectPropertyRange(:isLocatedInDistrict :District)
+
+# Object Property: :isLocatedInNeighborhood (isLocatedInNeighborhood)
+
+AnnotationAssertion(rdfs:label :isLocatedInNeighborhood "isLocatedInNeighborhood")
+InverseObjectProperties(:isLocatedInNeighborhood :neighborhoodHasMonument)
+ObjectPropertyDomain(:isLocatedInNeighborhood :Monument)
+ObjectPropertyRange(:isLocatedInNeighborhood :Neighborhood)
+
+# Object Property: :isNeighborhoodOf (isNeighborhoodOf)
+
+AnnotationAssertion(rdfs:label :isNeighborhoodOf "isNeighborhoodOf")
+ObjectPropertyDomain(:isNeighborhoodOf :Neighborhood)
+ObjectPropertyRange(:isNeighborhoodOf :District)
+
+# Object Property: :neighborhoodHasMonument (neighborhoodHasMonument)
+
+AnnotationAssertion(rdfs:label :neighborhoodHasMonument "neighborhoodHasMonument")
+ObjectPropertyDomain(:neighborhoodHasMonument :Neighborhood)
+ObjectPropertyRange(:neighborhoodHasMonument :Monument)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :PK (PK)
+
+AnnotationAssertion(rdfs:comment :PK "Primary key or identifier")
+AnnotationAssertion(rdfs:label :PK "PK")
+DataPropertyDomain(:PK :Monument)
+DataPropertyRange(:PK xsd:ID)
+
+# Data Property: :date (date)
+
+AnnotationAssertion(rdfs:comment :date "Monument construction year, exact or approximate")
+AnnotationAssertion(rdfs:label :date "date")
+DataPropertyDomain(:date :Monument)
+DataPropertyRange(:date xsd:string)
+
+# Data Property: :description (description)
+
+AnnotationAssertion(rdfs:label :description "description")
+DataPropertyDomain(:description :Monument)
+DataPropertyRange(:description xsd:string)
+
+# Data Property: :name (name)
+
+AnnotationAssertion(rdfs:comment :name "Monument name")
+AnnotationAssertion(rdfs:label :name "name")
+DataPropertyDomain(:name :AdministrativeDivision)
+DataPropertyDomain(:name :City)
+DataPropertyDomain(:name :Country)
+DataPropertyDomain(:name :District)
+DataPropertyDomain(:name :Monument)
+DataPropertyDomain(:name :Neighborhood)
+DataPropertyRange(:name xsd:string)
+
+# Data Property: :postalCode (postalCode)
+
+AnnotationAssertion(rdfs:label :postalCode "postalCode")
+DataPropertyDomain(:postalCode :Monument)
+DataPropertyRange(:postalCode xsd:string)
+
+# Data Property: :thoroughfareName (thoroughfareName)
+
+AnnotationAssertion(rdfs:label :thoroughfareName "thoroughfareName")
+DataPropertyDomain(:thoroughfareName :Monument)
+DataPropertyRange(:thoroughfareName xsd:string)
+
+# Data Property: :asWKT (geo:asWKT)
+
+AnnotationAssertion(rdfs:comment :geo:asWKT "WKT representation of the geometry")
+AnnotationAssertion(rdfs:label :geo:asWKT "geo:asWKT")
+DataPropertyDomain(:geo:asWKT :Geometry)
+DataPropertyRange(:geo:asWKT <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral>)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :AbstractSculpture (AbstractSculpture)
+
+AnnotationAssertion(rdfs:comment :AbstractSculpture "Conceptual or abstract sculpture")
+AnnotationAssertion(rdfs:label :AbstractSculpture "AbstractSculpture")
+SubClassOf(:AbstractSculpture :Monument)
+
+# Class: :AdministrativeDivision (AdministrativeDivision)
+
+AnnotationAssertion(rdfs:comment :AdministrativeDivision "Province, state, prefecture, deparment...")
+AnnotationAssertion(rdfs:label :AdministrativeDivision "AdministrativeDivision")
+
+# Class: :City (City)
+
+AnnotationAssertion(rdfs:label :City "City")
+
+# Class: :CivilConstruction (CivilConstruction)
+
+AnnotationAssertion(rdfs:comment :CivilConstruction "Bridge or civil construction")
+AnnotationAssertion(rdfs:label :CivilConstruction "CivilConstruction")
+SubClassOf(:CivilConstruction :Monument)
+
+# Class: :Country (Country)
+
+AnnotationAssertion(rdfs:label :Country "Country")
+
+# Class: :District (District)
+
+AnnotationAssertion(rdfs:label :District "District")
+
+# Class: :Fountain (Fountain)
+
+AnnotationAssertion(rdfs:comment :Fountain "Fountain, pond or water feature")
+AnnotationAssertion(rdfs:label :Fountain "Fountain")
+SubClassOf(:Fountain :Monument)
+
+# Class: :Gate (Gate)
+
+AnnotationAssertion(rdfs:comment :Gate "Gate or triumphal arch")
+AnnotationAssertion(rdfs:label :Gate "Gate")
+SubClassOf(:Gate :Monument)
+
+# Class: :Geometry (Geometry)
+
+AnnotationAssertion(rdfs:label :Geometry "Geometry")
+
+# Class: :MemorialElement (MemorialElement)
+
+AnnotationAssertion(rdfs:comment :MemorialElement "Memorial element or tombstone")
+AnnotationAssertion(rdfs:label :MemorialElement "MemorialElement")
+SubClassOf(:MemorialElement :Monument)
+
+# Class: :Monument (Monument)
+
+AnnotationAssertion(rdfs:label :Monument "Monument")
+
+# Class: :Neighborhood (Neighborhood)
+
+AnnotationAssertion(rdfs:label :Neighborhood "Neighborhood")
+
+# Class: :Ornamentation (Ornamentation)
+
+AnnotationAssertion(rdfs:comment :Ornamentation "Ornamental element")
+AnnotationAssertion(rdfs:label :Ornamentation "Ornamentation")
+SubClassOf(:Ornamentation :Monument)
+
+# Class: :SculpturalGroup (SculpturalGroup)
+
+AnnotationAssertion(rdfs:comment :SculpturalGroup "Sculptural Group")
+AnnotationAssertion(rdfs:label :SculpturalGroup "SculpturalGroup")
+SubClassOf(:SculpturalGroup :Monument)
+
+# Class: :Statue (Statue)
+
+AnnotationAssertion(rdfs:comment :Statue "Statue")
+AnnotationAssertion(rdfs:label :Statue "Statue")
+SubClassOf(:Statue :Monument)
+
+# Class: :UniqueBuilding (UniqueBuilding)
+
+AnnotationAssertion(rdfs:comment :UniqueBuilding "Singular construction")
+AnnotationAssertion(rdfs:label :UniqueBuilding "UniqueBuilding")
+SubClassOf(:UniqueBuilding :Monument)
+
+
+)

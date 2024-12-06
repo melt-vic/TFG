@@ -1,0 +1,458 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/"
+     xml:base="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/"
+     xmlns:geo="http://www.opengis.net/ont/geosparql#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2001/XMLSchema#ID -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2001/XMLSchema#ID"/>
+    
+
+
+    <!-- http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral -->
+
+    <rdfs:Datatype rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasDistrict"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:label>IsDistrictOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/cityHasMonument -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/cityHasMonument">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:label>cityHasMonument</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/districtHasMonument -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/districtHasMonument">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInDistrict"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:label>districtHasMonument</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAdministrativeDivision -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAdministrativeDivision">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision"/>
+        <rdfs:label>hasAdministrativeDivision</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasCity -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasCity">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:label>hasCity</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasDistrict -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasDistrict">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:label>hasDistrict</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasGeometry -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasGeometry">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry"/>
+        <rdfs:comment>Relates a monument with its geometry</rdfs:comment>
+        <rdfs:label>hasGeometry</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasNeighborhood -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasNeighborhood">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isNeighborhoodOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood"/>
+        <rdfs:label>hasNeighborhood</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAdministrativeDivisionOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAdministrativeDivisionOf">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAdministrativeDivisionOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country"/>
+        <rdfs:label>hasAdministrativeDivision</rdfs:label>
+        <rdfs:label>isAdministrativeDivisionOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision"/>
+        <rdfs:label>isCityOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:comment>City where the monument is located</rdfs:comment>
+        <rdfs:label>isLocatedInCity</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInDistrict -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInDistrict">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:label>isLocatedInDistrict</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInNeighborhood -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInNeighborhood">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/neighborhoodHasMonument"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood"/>
+        <rdfs:label>isLocatedInNeighborhood</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isNeighborhoodOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isNeighborhoodOf">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:label>isNeighborhoodOf</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/neighborhoodHasMonument -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/neighborhoodHasMonument">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:label>neighborhoodHasMonument</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#ID"/>
+        <rdfs:comment>Primary key or identifier</rdfs:comment>
+        <rdfs:label>PK</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Monument construction year, exact or approximate</rdfs:comment>
+        <rdfs:label>date</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/description">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>description</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:comment>Monument name</rdfs:comment>
+        <rdfs:label>name</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>postalCode</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/thoroughfareName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label>thoroughfareName</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/geo:asWKT -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/geo:asWKT">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral"/>
+        <rdfs:comment>WKT representation of the geometry</rdfs:comment>
+        <rdfs:label>geo:asWKT</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AbstractSculpture -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AbstractSculpture">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Conceptual or abstract sculpture</rdfs:comment>
+        <rdfs:label>AbstractSculpture</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/AdministrativeDivision">
+        <rdfs:comment>Province, state, prefecture, deparment...</rdfs:comment>
+        <rdfs:label>AdministrativeDivision</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/City">
+        <rdfs:label>City</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/CivilConstruction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/CivilConstruction">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Bridge or civil construction</rdfs:comment>
+        <rdfs:label>CivilConstruction</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Country">
+        <rdfs:label>Country</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/District">
+        <rdfs:label>District</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Fountain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Fountain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Fountain, pond or water feature</rdfs:comment>
+        <rdfs:label>Fountain</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Gate -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Gate">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Gate or triumphal arch</rdfs:comment>
+        <rdfs:label>Gate</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Geometry">
+        <rdfs:label>Geometry</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/MemorialElement -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/MemorialElement">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Memorial element or tombstone</rdfs:comment>
+        <rdfs:label>MemorialElement</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument">
+        <rdfs:label>Monument</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Neighborhood">
+        <rdfs:label>Neighborhood</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Ornamentation -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Ornamentation">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Ornamental element</rdfs:comment>
+        <rdfs:label>Ornamentation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/SculpturalGroup -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/SculpturalGroup">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Sculptural Group</rdfs:comment>
+        <rdfs:label>SculpturalGroup</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Statue -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Statue">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Statue</rdfs:comment>
+        <rdfs:label>Statue</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/vic/ontologies/2024/10/monuments/UniqueBuilding -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/UniqueBuilding">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/vic/ontologies/2024/10/monuments/Monument"/>
+        <rdfs:comment>Singular construction</rdfs:comment>
+        <rdfs:label>UniqueBuilding</rdfs:label>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.26.2023-07-17T20:34:13Z) https://github.com/owlcs/owlapi -->
+
