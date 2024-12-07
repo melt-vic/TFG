@@ -5,7 +5,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 SELECT ?monument ?name
 WHERE {
-    ?district :name "CENTRO" .
+    ?district :name "CENTRO"@es .
     ?monument :isLocatedInDistrict ?district ;
               :name ?name .
 }
@@ -71,7 +71,6 @@ WHERE {
     FILTER(CONTAINS(LCASE(?date), "1990")) .
 }
 
-
 # Todos los monumentos del barrio Goya con sus propiedades:
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
@@ -108,5 +107,48 @@ WHERE {
     OPTIONAL { ?monument :description ?description . }
     OPTIONAL { ?monument :date ?date . }
     OPTIONAL { ?monument :address ?address . }
+}
+
+
+#Consulta federada con Wikidata para obtener información acerca del personaje representado en una estatua:
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?name ?typeLabel ?description ?date ?address ?depictedPerson ?depictedPersonImage 
+	?depictedPersonCitizenshipLabel ?dateOfBirth ?placeOfBirth
+WHERE {
+	BIND("400070" AS ?catalogCode) # catalogCode = "400070"
+	# Desde la ontología de monumentos:
+	?monument :name ?name ;
+		:PK ?catalogCode ;
+		rdf:type ?type .
+		?type rdfs:label ?typeLabel .
+	OPTIONAL { ?monument :description ?description . }
+	OPTIONAL { ?monument :date ?date . }
+	OPTIONAL { ?monument :address ?address . }
+
+	# Desde Wikidata
+	SERVICE <https://query.wikidata.org/sparql> {
+		?wikidataMonument wdt:P528 ?catalogCode ; # Propiedad catalogCode de Wikidata
+			     wdt:P180 ?depictedPerson .
+		OPTIONAL { 
+			?depictedPerson wdt:P569 ?dateOfBirth .
+			?depictedPerson wdt:P19 ?placeOfBirth .
+		}
+		OPTIONAL {
+			?depictedPerson wdt:P18 ?depictedPersonImage
+		}
+		OPTIONAL {
+			?depictedPerson wdt:P27 ?depictedPersonCitizenship .
+			?depictedPersonCitizenship rdfs:label ?depictedPersonCitizenshipLabel .
+			FILTER(LANG(?depictedPersonCitizenshipLabel) = "es")  
+		}
+		OPTIONAL {
+			?depictedPerson rdfs:label ?depictedPersonLabel
+			FILTER(LANG(?depictedPersonLabel) = "es")
+		}
+	}
 }
 
