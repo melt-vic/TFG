@@ -52,6 +52,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAdministrativeDivision
 :hasAdministrativeDivision rdf:type owl:ObjectProperty ;
+                           owl:inverseOf :isAdministrativeDivisionOf ;
                            rdfs:domain :Country ;
                            rdfs:range :AdministrativeDivision ;
                            rdfs:label "hasAdministrativeDivision" .
@@ -59,6 +60,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasAuthor
 :hasAuthor rdf:type owl:ObjectProperty ;
+           owl:inverseOf :isAuthorOf ;
            rdfs:domain :Monument ;
            rdfs:range :Author ;
            rdfs:label "hasAuthor" .
@@ -97,7 +99,6 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAdministrativeDivisionOf
 :isAdministrativeDivisionOf rdf:type owl:ObjectProperty ;
-                            owl:inverseOf :isAdministrativeDivisionOf ;
                             rdfs:domain :AdministrativeDivision ;
                             rdfs:range :Country ;
                             rdfs:comment "Inverse relation of hasAdministrativeDivision"@en ;
