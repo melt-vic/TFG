@@ -207,6 +207,7 @@ xsd:ID rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name
 :name rdf:type owl:DatatypeProperty ;
       rdfs:domain :AdministrativeDivision ,
+                  :Author ,
                   :City ,
                   :Country ,
                   :District ,
