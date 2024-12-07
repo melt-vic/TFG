@@ -25,13 +25,13 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/IsDistrictOf
-:IsDistrictOf rdf:type owl:ObjectProperty ;
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isDistrictOf
+:isDistrictOf rdf:type owl:ObjectProperty ;
               owl:inverseOf :hasDistrict ;
               rdfs:domain :District ;
               rdfs:range :City ;
               rdfs:comment "Inverse relation of hasDistrict"@en ;
-              rdfs:label "IsDistrictOf" .
+              rdfs:label "isDistrictOf" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/cityHasMonument
