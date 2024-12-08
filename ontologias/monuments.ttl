@@ -25,15 +25,6 @@ xsd:ID rdf:type rdfs:Datatype .
 #    Object Properties
 #################################################################
 
-###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isDistrictOf
-:isDistrictOf rdf:type owl:ObjectProperty ;
-              owl:inverseOf :hasDistrict ;
-              rdfs:domain :District ;
-              rdfs:range :City ;
-              rdfs:comment "Inverse relation of hasDistrict"@en ;
-              rdfs:label "isDistrictOf" .
-
-
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/cityHasMonument
 :cityHasMonument rdf:type owl:ObjectProperty ;
                  owl:inverseOf :isLocatedInCity ;
@@ -76,6 +67,7 @@ xsd:ID rdf:type rdfs:Datatype .
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasDistrict
 :hasDistrict rdf:type owl:ObjectProperty ;
+             owl:inverseOf :isDistrictOf ;
              rdfs:domain :City ;
              rdfs:range :District ;
              rdfs:label "hasDistrict" .
@@ -119,6 +111,14 @@ xsd:ID rdf:type rdfs:Datatype .
           rdfs:range :AdministrativeDivision ;
           rdfs:comment "Inverse relation of hasCity"@en ;
           rdfs:label "isCityOf" .
+
+
+###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isDistrictOf
+:isDistrictOf rdf:type owl:ObjectProperty ;
+              rdfs:domain :District ;
+              rdfs:range :City ;
+              rdfs:comment "Inverse relation of hasDistrict"@en ;
+              rdfs:label "isDistrictOf" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity
@@ -184,7 +184,7 @@ xsd:ID rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date
 :date rdf:type owl:DatatypeProperty ;
       rdfs:domain :Monument ;
-      rdfs:range xsd:string ;
+      rdfs:range rdfs:Literal ;
       rdfs:comment "Monument construction year, exact or approximate"@en ;
       rdfs:label "date" .
 
@@ -192,7 +192,7 @@ xsd:ID rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/description
 :description rdf:type owl:DatatypeProperty ;
              rdfs:domain :Monument ;
-             rdfs:range xsd:string ;
+             rdfs:range rdfs:Literal ;
              rdfs:comment "Monument description"@en ;
              rdfs:label "description" .
 
@@ -214,7 +214,7 @@ xsd:ID rdf:type rdfs:Datatype .
                   :District ,
                   :Monument ,
                   :Neighborhood ;
-      rdfs:range xsd:string ;
+      rdfs:range rdfs:Literal ;
       rdfs:comment "Monument name"@en ;
       rdfs:label "name" .
 
