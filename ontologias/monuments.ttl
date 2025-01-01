@@ -74,7 +74,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/hasGeometry
-:hasGeometry rdf:type owl:ObjectProperty ;
+:hasGeometry rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
              rdfs:domain :Monument ;
              rdfs:range :Geometry ;
              rdfs:comment "Relates a monument with its geometry"@en ;
@@ -90,7 +91,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isAdministrativeDivisionOf
-:isAdministrativeDivisionOf rdf:type owl:ObjectProperty ;
+:isAdministrativeDivisionOf rdf:type owl:ObjectProperty ,
+                                     owl:FunctionalProperty ;
                             rdfs:domain :AdministrativeDivision ;
                             rdfs:range :Country ;
                             rdfs:comment "Inverse relation of hasAdministrativeDivision"@en ;
@@ -106,7 +108,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isCityOf
-:isCityOf rdf:type owl:ObjectProperty ;
+:isCityOf rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
           rdfs:domain :City ;
           rdfs:range :AdministrativeDivision ;
           rdfs:comment "Inverse relation of hasCity"@en ;
@@ -122,7 +125,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInCity
-:isLocatedInCity rdf:type owl:ObjectProperty ;
+:isLocatedInCity rdf:type owl:ObjectProperty ,
+                          owl:FunctionalProperty ;
                  rdfs:domain :Monument ;
                  rdfs:range :City ;
                  rdfs:comment "City where the monument is located. Inverse relation of cityHasMonument"@en ;
@@ -130,7 +134,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInDistrict
-:isLocatedInDistrict rdf:type owl:ObjectProperty ;
+:isLocatedInDistrict rdf:type owl:ObjectProperty ,
+                              owl:FunctionalProperty ;
                      rdfs:domain :Monument ;
                      rdfs:range :District ;
                      rdfs:comment "Inverse relation of districtHasMonument"@en ;
@@ -140,6 +145,7 @@ xsd:ID rdf:type rdfs:Datatype .
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isLocatedInNeighborhood
 :isLocatedInNeighborhood rdf:type owl:ObjectProperty ;
                          owl:inverseOf :neighborhoodHasMonument ;
+                         rdf:type owl:FunctionalProperty ;
                          rdfs:domain :Monument ;
                          rdfs:range :Neighborhood ;
                          rdfs:comment "Inverse relation of neighborhoodHasMonument"@en ;
@@ -147,7 +153,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/isNeighborhoodOf
-:isNeighborhoodOf rdf:type owl:ObjectProperty ;
+:isNeighborhoodOf rdf:type owl:ObjectProperty ,
+                           owl:FunctionalProperty ;
                   rdfs:domain :Neighborhood ;
                   rdfs:range :District ;
                   rdfs:comment "Inverse relation of hasNeighborhood"@en ;
@@ -166,7 +173,8 @@ xsd:ID rdf:type rdfs:Datatype .
 #################################################################
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/PK
-:PK rdf:type owl:DatatypeProperty ;
+:PK rdf:type owl:DatatypeProperty ,
+             owl:FunctionalProperty ;
     rdfs:domain :Monument ;
     rdfs:range xsd:string ;
     rdfs:comment "Monument primary key or identifier"@en ;
@@ -174,7 +182,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/address
-:address rdf:type owl:DatatypeProperty ;
+:address rdf:type owl:DatatypeProperty ,
+                  owl:FunctionalProperty ;
          rdfs:domain :Monument ;
          rdfs:range xsd:string ;
          rdfs:comment "Monument address"@en ;
@@ -182,7 +191,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/date
-:date rdf:type owl:DatatypeProperty ;
+:date rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
       rdfs:domain :Monument ;
       rdfs:range rdfs:Literal ;
       rdfs:comment "Monument construction year, exact or approximate"@en ;
@@ -190,7 +200,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/description
-:description rdf:type owl:DatatypeProperty ;
+:description rdf:type owl:DatatypeProperty ,
+                      owl:FunctionalProperty ;
              rdfs:domain :Monument ;
              rdfs:range rdfs:Literal ;
              rdfs:comment "Monument description"@en ;
@@ -206,7 +217,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/name
-:name rdf:type owl:DatatypeProperty ;
+:name rdf:type owl:DatatypeProperty ,
+               owl:FunctionalProperty ;
       rdfs:domain :AdministrativeDivision ,
                   :Author ,
                   :City ,
@@ -215,12 +227,13 @@ xsd:ID rdf:type rdfs:Datatype .
                   :Monument ,
                   :Neighborhood ;
       rdfs:range rdfs:Literal ;
-      rdfs:comment "Monument name"@en ;
+      rdfs:comment "Entity name"@en ;
       rdfs:label "name" .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/postalCode
-:postalCode rdf:type owl:DatatypeProperty ;
+:postalCode rdf:type owl:DatatypeProperty ,
+                     owl:FunctionalProperty ;
             rdfs:domain :Monument ;
             rdfs:range xsd:string ;
             rdfs:comment "Monument postal code"@en ;
@@ -228,7 +241,8 @@ xsd:ID rdf:type rdfs:Datatype .
 
 
 ###  http://www.semanticweb.org/vic/ontologies/2024/10/monuments/geo:asWKT
-:geo:asWKT rdf:type owl:DatatypeProperty ;
+:geo:asWKT rdf:type owl:DatatypeProperty ,
+                    owl:FunctionalProperty ;
            rdfs:domain :Geometry ;
            rdfs:range <http://www.w3.org/2003/01/geo/wgs84_pos#wktLiteral> ;
            rdfs:comment "WKT representation of the geometry"@en ;
