@@ -83,8 +83,8 @@ WHERE {
      	rdf:type ?type .
 	?type rdfs:label ?typeLabel .
     ?monument :name ?name .
-    # Cada propiedad en su propio bloque OPTIONAL o si una no está
-    # definida tampoco se mostrarán las demás propiedades.
+    # Cada propiedad en su propio bloque OPTIONAL. De lo contrario,
+    # si una no está, no se mostrarán las demás propiedades.
     OPTIONAL { ?monument :postalCode ?postalCode . }
     OPTIONAL { ?monument :description ?description . }
     OPTIONAL { ?monument :date ?date . }
@@ -96,7 +96,7 @@ PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?monument ?name ?description ?typeLabel ?date ?address ?postalCode
+SELECT ?monument ?name ?typeLabel ?date ?address ?postalCode ?description
 WHERE { 
     ?author :name "ANTONINI, Lucía" .
     ?monument :hasAuthor ?author ;
