@@ -116,8 +116,8 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-SELECT ?name ?typeLabel ?description ?date ?address ?depictedPerson ?depictedPersonImage 
-	?depictedPersonCitizenshipLabel ?dateOfBirth ?placeOfBirth
+SELECT ?name ?typeLabel ?date ?address ?depictedPerson ?depictedPersonImage 
+	?depictedPersonCitizenshipLabel ?dateOfBirth ?placeOfBirth ?description
 WHERE {
 	BIND("400070" AS ?catalogCode) # catalogCode = "400070"
 	# Desde la ontología de monumentos:
@@ -151,4 +151,26 @@ WHERE {
 		}
 	}
 }
+
+#Consulta geoespacial:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bif: <bif:>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments#>
+
+SELECT ?monument ?name ?typeLabel ?date ?address SUBSTR(?description, 1, 50) AS ?shortDescription
+       ?geometry ?wkt (bif:st_distance(?wkt, bif:st_point(-3.6042, 40.40766)) AS ?distance)
+FROM <http://www.semanticweb.org/vic/ontologies/2024/10/monuments>
+WHERE {
+  ?geometry geo:asWKT ?wkt .
+  FILTER(bif:st_distance(?wkt, bif:st_point(-3.6042, 40.40766)) < 0.01) .
+  ?monument :hasGeometry ?geometry ;
+            :name ?name ;
+            rdf:type ?type .
+  OPTIONAL { ?type rdfs:label ?typeLabel . }
+  OPTIONAL { ?monument :date ?date . }
+  OPTIONAL { ?monument :address ?address . }
+  OPTIONAL { ?monument :description ?description . }
+}
+ORDER BY ?distance
 
