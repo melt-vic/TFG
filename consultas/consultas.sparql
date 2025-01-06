@@ -152,18 +152,19 @@ WHERE {
 	}
 }
 
-#Consulta geoespacial:
+#Consulta geoespacial con st_distance:
 PREFIX geo: <http://www.opengis.net/ont/geosparql#>
 PREFIX bif: <bif:>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments#>
 
-SELECT ?monument ?name ?typeLabel ?date ?address SUBSTR(?description, 1, 50) AS ?shortDescription
-       ?geometry ?wkt (bif:st_distance(?wkt, bif:st_point(-3.6042, 40.40766)) AS ?distance)
+SELECT (bif:st_distance(?wkt, ?refPoint) AS ?distance) ?monument 
+       ?name ?typeLabel ?date ?address SUBSTR(?description, 1, 50) AS ?shortDescription ?geometry 
 FROM <http://www.semanticweb.org/vic/ontologies/2024/10/monuments>
 WHERE {
+  BIND(bif:st_point(-3.6042, 40.4076) AS ?refPoint)
   ?geometry geo:asWKT ?wkt .
-  FILTER(bif:st_distance(?wkt, bif:st_point(-3.6042, 40.40766)) < 0.01) .
+  FILTER(bif:st_distance(?wkt, ?refPoint) < 0.01) .
   ?monument :hasGeometry ?geometry ;
             :name ?name ;
             rdf:type ?type .
@@ -173,4 +174,26 @@ WHERE {
   OPTIONAL { ?monument :description ?description . }
 }
 ORDER BY ?distance
+
+#Consulta geoespacial con st_within:
+PREFIX geo: <http://www.opengis.net/ont/geosparql#>
+PREFIX bif: <bif:>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX : <http://www.semanticweb.org/vic/ontologies/2024/10/monuments#>
+
+SELECT ?monument ?name ?typeLabel ?date ?address 
+       (STR(SUBSTR(?description, 1, 50)) AS ?shortDescription) ?geometry
+FROM <http://www.semanticweb.org/vic/ontologies/2024/10/monuments>
+WHERE {
+  BIND(bif:st_point(-3.6042, 40.40766) AS ?refPoint)
+  ?geometry geo:asWKT ?wkt .
+  FILTER(bif:st_within(?wkt, ?refPoint, 0.05)) .
+  ?monument :hasGeometry ?geometry ;
+            :name ?name ;
+            rdf:type ?type .
+  OPTIONAL { ?type rdfs:label ?typeLabel . }
+  OPTIONAL { ?monument :date ?date . }
+  OPTIONAL { ?monument :address ?address . }
+  OPTIONAL { ?monument :description ?description . }
+}
 
